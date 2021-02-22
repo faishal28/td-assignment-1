@@ -7,3 +7,8 @@ The Following ansible script
 - Configures 2 Apache and 1 NGINX servers
 - Setup an ELB and conncects the above servers using this
 - ✨Cheers✨
+
+## Run as
+```sh
+sudo ansible-playbook --ask-vault-pass ec2.yml
+```
