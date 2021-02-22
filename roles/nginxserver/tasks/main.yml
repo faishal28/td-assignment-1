@@ -1,0 +1,32 @@
+---
+# tasks file for nginxserver
+- name: install nginx
+  package:
+    name: nginx
+    state: present
+
+- name: Copy html file
+  ansible.builtin.copy:
+    src: /home/faishal/aws-ansible/index.html
+    dest: /var/www/html/
+    
+#configuring ports and logs    
+- name: creating required directories
+  file:
+    path: /var/log/tdcustom
+    state: directory
+  file:
+    path: /var/log/tdcustom/accesslogs
+    state: directory
+    
+- name: Copy nginx config file
+  ansible.builtin.copy:
+    src: /home/faishal/aws-ansible/nginx.conf
+    dest: /etc/nginx/nginx.conf
+  ansible.builtin.copy:
+    src: /home/faishal/aws-ansible/default
+    dest: /etc/nginx/sites-enabled/default
+
+#restarting apache
+- name: restart nginx
+  service: name=nginx state=restarted

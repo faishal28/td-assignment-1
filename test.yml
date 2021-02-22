@@ -1,0 +1,6 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: Get my public IP
+    ipify_facts:
+  - debug: var=ipify_public_ip
